@@ -31,7 +31,7 @@ module.exports = {
         waitForConditionTimeout: 10000,
         devServerURL: 'http://localhost:' + (process.env.PORT || config.dev.port)
       },
-      username: 'twilliam',
+      username: process.env.SAUCE_USERNAME,
       access_key: process.env.SAUCE_ACCESS_KEY,
       desiredCapabilities: {
         javascriptEnabled: true,
