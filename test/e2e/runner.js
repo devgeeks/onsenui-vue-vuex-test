@@ -1,5 +1,6 @@
 // 1. start the dev server using production config
 process.env.NODE_ENV = 'testing';
+process.env.BABEL_ENV = 'test';
 var server = require('../../build/dev-server.js');
 
 server.ready.then(() => {
@@ -14,7 +15,9 @@ server.ready.then(() => {
   if (opts.indexOf('--config') === -1) {
     opts = opts.concat(['--config', 'test/e2e/nightwatch.conf.js']);
   }
-  if (opts.indexOf('--env') === -1) {
+  if (process.env.SAUCE) {
+    opts = opts.concat(['--env', 'sauce']);
+  } else if (opts.indexOf('--env') === -1) {
     opts = opts.concat(['--env', 'chrome']);
   }
 

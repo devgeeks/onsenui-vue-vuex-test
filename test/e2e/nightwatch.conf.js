@@ -18,7 +18,28 @@ module.exports = {
   },
 
   test_settings: {
-    local: {
+    sauce: {
+      launch_url: 'http://localhost:' + (process.env.PORT || config.dev.port),
+      selenium_port: 80,
+      selenium_host: 'ondemand.saucelabs.com',
+      silent: true,
+      screenshots: {
+        enabled: false,
+        path: ''
+      },
+      globals: {
+        waitForConditionTimeout: 10000,
+        devServerURL: 'http://localhost:' + (process.env.PORT || config.dev.port)
+      },
+      username: 'twilliam',
+      access_key: process.env.SAUCE_ACCESS_KEY,
+      desiredCapabilities: {
+        javascriptEnabled: true,
+        acceptSslCerts: true
+      }
+    },
+
+    default: {
       selenium_port: 4444,
       selenium_host: 'localhost',
       silent: true,
@@ -27,25 +48,11 @@ module.exports = {
       }
     },
 
-    default: {
-      launch_url: 'http://ondemand.saucelabs.com:80',
-      selenium_port: 80,
-      selenium_host: 'ondemand.saucelabs.com',
-      silent: true,
-      username: 'devgeeks',
-      access_key: process.env.SAUCE_ACCESS_KEY,
-      screenshots: {
-        enabled: false,
-        path: ''
-      },
-      globals: {
-        waitForConditionTimeout: 10000
-      }
-    },
-
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
+        platform: 'OS X 10.11',
+        version: '47',
         javascriptEnabled: true,
         acceptSslCerts: true
       }
