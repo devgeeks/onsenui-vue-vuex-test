@@ -4,7 +4,11 @@ import store from '@/store';
 
 describe('HomePage.vue', () => {
   const Constructor = Vue.extend(HomePage);
-  const vm = new Constructor({ store }).$mount();
+  let vm;
+
+  before(() => {
+    vm = new Constructor({ store }).$mount();
+  });
 
   it('should render correct contents', () => {
     expect(vm.$el.querySelector('ons-toolbar .center').textContent)
